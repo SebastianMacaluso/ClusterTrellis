@@ -61,13 +61,13 @@ Ginkgo is a toy model for jets physics that can be downloaded from [`Ginkgo`](ht
 
 Use [`ClusterTrellis.ipynb`](src/ClusterTrellis.ipynb) as a template. 
 
-1- To run the Cluster Trellis on a new model, replace the get_energy_of_split and compute_map_features methods in the ModelNode class under the `Probabilistic Model : Ginkgo` section. The energy function for a pairwise splitting should be written in terms of the map_features and model_params.
+1- To run the Cluster Trellis on a new model, replace the `get_energy_of_split` and `compute_map_features` methods in the `ModelNode` class under the `Probabilistic Model : Ginkgo` section. The energy function for a pairwise splitting should be written in terms of the map_features and model_params.
 
-map_features : list, where each entry is a list with the model features/values for each vertex of a dataset. In particular, we initialize the algorithm with the leaves_features list. E.g. for Ginkgo this is [momentum, invariant mass] for each leaf.
+**map_features** : list, where each entry is a list with the model features/values for each vertex of a dataset. In particular, we initialize the algorithm with the leaves_features list. E.g. for Ginkgo this is [momentum, invariant mass] for each leaf.
 
-model_params : dictionary with the model parameters.
+**model_params** : dictionary with the model parameters.
 
-2- The trellis can be run step by step in section `Run Exact trellis on truth trees step by step` (more for debugging purposes) or it could be called with `runTrellisOnly` function (recommended). In both cases replace `leaves_features` and `model_params` with current model values.
+2- The trellis can be run step by step in section `Run Exact trellis on truth trees step by step` (more for debugging purposes) or it could be called with the `runTrellisOnly` function (recommended). In both cases replace `leaves_features` and `model_params` with your model values.
 
 -------------------------------------------------------------------------
 ## Citations
