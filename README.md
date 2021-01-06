@@ -1,4 +1,4 @@
-#  Cluster Trellis for Exact Inference on Hierarchical Clustering in Particle Physics
+#  Data Structures and Algorithms for Exact Inference in Hierarchical Clustering 
 
 ### **Craig S. Greenberg\*, Sebastian Macaluso\*, Nicholas Monath, Ji-Ah Lee, Patrick  Flaherty, Kyle Cranmer, Andrew McGregor, Andrew McCallum.**
 #### * Both authors contributed equally to this work.
@@ -13,7 +13,7 @@ Note that this is an early development version.
 Hierarchical clustering is a fundamental task often used to discover meaningful structures in data, such as phylogenetic trees, taxonomies of concepts, subtypes of cancer, and cascades of particle decays in particle physics. Typically approximate algorithms are used for inference due to the combinatorial number of possible hierarchical clusterings. In contrast to existing methods, we present novel dynamic-programming algorithms for **exact** inference in hierarchical clustering based on a novel trellis data structure, and we prove that we can exactly compute the partition function, maximum likelihood hierarchy, and marginal probabilities of sub-hierarchies and clusters. Our algorithms scale in time and space proportional to the powerset of N elements which is super-exponentially more efficient than explicitly considering each of the (2N-3)!! possible hierarchies. 
 
 <!--This should be  a jpg file for the figure to be displayed-->
-![Fig.1](plots/LatentStructure5.jpg)
+![Fig.1](plots/LatentStructure5.png)
 
 ##### Fig. 1: Schematic representation of a hierarchical clustering. H denotes the latent state and X the dataset.
 
@@ -29,13 +29,19 @@ A more detailed description of this work and implementations to other areas such
 
 ##### Fig. 2: Computing the partition function for the dataset {a,b,c,d}. Left: exhaustive computation, consisting of the summation of (2x4-3)!! =15  energy equations. Right: computation using the trellis.  The sum for the partition function is over 2^{4-1} - 1 = 7 equations, each making use of a memoized partition function value. Colors indicate corresponding computations over siblings in the trellis.
 
+## Installation
+
+
+1. Clone the repository
+2. `make install` from main dir.
+
 ## Implementation on Ginkgo Jets
 
 Ginkgo is a toy model for jets physics that can be downloaded from [`Ginkgo`](https://github.com/SebastianMacaluso/ToyJetsShower). A detailed description of the model can be found in [`Ginkgo Notes`](https://www.overleaf.com/read/pmmcqhyfsctf). Also, details and examples on how to access the jet binary tree structure in [`binaryTreeStructure.ipynb`](src/binaryTreeStructure.ipynb).
 
 ### Partition function and maximum likelihood (MAP) hierarchy.
 
- The trellis implements a memoized dynamic program to compute the partition function and the MAP hierarchy. There are examples on how to run the algorithm and plot the results in [`Ginkgo_Trellis.ipynb`](src/Ginkgo_Trellis.ipynb).
+ The trellis implements a memoized dynamic program to compute the partition function and the MAP hierarchy. There are examples on how to run the algorithm and plot the results in [`ClusterTrellis.ipynb`](src/ClusterTrellis.ipynb).
 
 
 
@@ -51,11 +57,13 @@ Ginkgo is a toy model for jets physics that can be downloaded from [`Ginkgo`](ht
 
 </pre>
 
-## Installation
+##Implementing your own model
 
+Use [`ClusterTrellis.ipynb`](src/ClusterTrellis.ipynb) as a template. To run the Cluster Trellis on a new model, replace the get_energy_of_split and compute_map_features methods in the ModelNode class under `Probabilistic Model : Ginkgo`. The energy function for a pairwise splitting should be written in terms of the map_features and model_params.
 
-1. Clone the repository
-2. `make install` from main dir.
+map_features : list, where each entry is a list with the model features/values for each vertex of a dataset. In particular, we initialize the algorithm with the leaves_features list. E.g. for Ginkgo this is [momentum, invariant mass] for each leaf.
+
+model_params : dictionary with the model parameters.
 
 
 
