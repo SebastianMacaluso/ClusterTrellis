@@ -6,20 +6,20 @@ from utils import get_logger
 logger = get_logger(level=logging.WARNING)
 
 
-def compare_map_gt_and_bs_trees(gt_tree, NodeClass):
+def compare_map_gt_and_bs_trees(gt_tree, NodeClass, leaves_map_values, model_params):
     """ Create a trellis given a set of leaves.
     (Originally written for Ginkgo: Toy Model for Particle Physics Jets)
     Args: Ground truth dictionary with leaves"""
 
     startTime = time.time()
 
-    data_params = gt_tree
-    N=len(data_params['leaves'])
+    # data_params = gt_tree
+    # N=len(data_params['leaves'])
 
-    leaves_map_values =[ [data_params['leaves'][i],0] for i in range(N)]
-    model_params ={}
-    model_params["delta_min"] = float(data_params['pt_cut'])
-    model_params["lam"]= float(data_params['Lambda'])
+    # leaves_map_values =[ [data_params['leaves'][i],0] for i in range(N)]
+    # model_params ={}
+    # model_params["delta_min"] = float(data_params['pt_cut'])
+    # model_params["lam"]= float(data_params['Lambda'])
 
     """ Create trellis"""
     a_trellis = HierarchicalTrellis.HierarchicalTrellis()
