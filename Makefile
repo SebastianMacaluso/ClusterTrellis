@@ -11,7 +11,7 @@ clean:
 	rm dist/ClusterTrellis-${VERSION}.whl
 
 
-install: ./dist/ClusterTrellis-${VERSION}-py3-none-any.whl # pip install
+install: ./dist/ClusterTrellis-${VERSION}.whl # pip install
 	pip install --upgrade ./dist/ClusterTrellis-${VERSION}.whl
 	
 
