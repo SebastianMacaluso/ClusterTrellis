@@ -35,9 +35,32 @@ A more detailed description of this work and implementations to other areas such
 1. Clone the repository
 2. `make install` from main dir.
 
-## Implementation on Ginkgo Jets
+
+
+## Interfacing your own model
+
+### Requirements
+
+To implement a new model for hierarchical clustering, each hierarchy should have an energy function that factorizes as a product of pairwise splitting energies $\psi$ of each inner vertex in the hierarchy (see `definition 2` in [`Data Structures & Algorithms for Exact Inference in Hierarchical Clustering`](https://arxiv.org/abs/2002.11661) for more details). Also, the current implementation assumes that the model parameters are the same for every vertex.
+
+### Implementation
+
+Use [`ClusterTrellis.ipynb`](src/ClusterTrellis.ipynb) as a template to run the algorithm. 
+
+1- To run the Cluster Trellis on a new model, define the `get_energy_of_split` and `compute_map_features` methods in the `ModelNode` class under the `Interfacing your Own Model` section. In particular,  get_energy_of_split represents the potential function $\psi$ introduced in the paper, describing the compatibility of a pair of sibling nodes in a hierarchy $H$. The energy function $\psi$ for a pairwise splitting should be written in terms of the map_features and model_params. Thus, compute_map_features is an auxiliary function to calculate features of internal vertices in the trellis. 
+
+**map_features** : list, where each entry is a list with the model features/values for each vertex of a dataset. In particular, we initialize the algorithm with the leaves_features list as [feature1, feature2, ... , featureN]. E.g. for Ginkgo this is [momentum, invariant mass] for each leaf.
+
+**model_params** : dictionary with the model parameters.
+
+2- The trellis can be run step by step in section `Run Exact trellis on truth trees step by step` (more for debugging purposes) or it could be called with the `runTrellisOnly` function (recommended). In both cases replace `leaves_features` and `model_params` with your model values.
+
+
+## Example: Interfacing on Ginkgo 
 
 Ginkgo is a toy model for jets physics that can be downloaded from [`Ginkgo`](https://github.com/SebastianMacaluso/ToyJetsShower). A detailed description of the model can be found in [`Ginkgo Notes`](https://www.overleaf.com/read/pmmcqhyfsctf). Also, details and examples on how to access the jet binary tree structure in [`binaryTreeStructure.ipynb`](src/binaryTreeStructure.ipynb).
+
+This model can be run as an example in [`ClusterTrellis.ipynb`](src/ClusterTrellis.ipynb).
 
 ### Partition function and maximum likelihood (MAP) hierarchy.
 
@@ -57,17 +80,6 @@ Ginkgo is a toy model for jets physics that can be downloaded from [`Ginkgo`](ht
 
 </pre>
 
-## Implementing your own model
-
-Use [`ClusterTrellis.ipynb`](src/ClusterTrellis.ipynb) as a template. 
-
-1- To run the Cluster Trellis on a new model, replace the `get_energy_of_split` and `compute_map_features` methods in the `ModelNode` class under the `Probabilistic Model : Ginkgo` section. The energy function for a pairwise splitting should be written in terms of the map_features and model_params.
-
-**map_features** : list, where each entry is a list with the model features/values for each vertex of a dataset. In particular, we initialize the algorithm with the leaves_features list. E.g. for Ginkgo this is [momentum, invariant mass] for each leaf.
-
-**model_params** : dictionary with the model parameters.
-
-2- The trellis can be run step by step in section `Run Exact trellis on truth trees step by step` (more for debugging purposes) or it could be called with the `runTrellisOnly` function (recommended). In both cases replace `leaves_features` and `model_params` with your model values.
 
 -------------------------------------------------------------------------
 ## Citations
