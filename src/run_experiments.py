@@ -1,6 +1,6 @@
 import time
 import numpy as np
-import HierarchicalTrellis
+from src import HierarchicalTrellis
 import logging
 from utils import get_logger
 logger = get_logger(level=logging.WARNING)
