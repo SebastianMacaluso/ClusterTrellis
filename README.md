@@ -17,10 +17,6 @@ Hierarchical clustering is a fundamental task often used to discover meaningful 
 
 ##### Fig. 1: Schematic representation of a hierarchical clustering. H denotes the latent state and X the dataset.
 
-## Publications
-
-A more detailed description of this work and implementations to other areas such as genomics can be found in our papers [`Data Structures & Algorithms for Exact Inference in Hierarchical Clustering`](https://arxiv.org/abs/2002.11661) and [`Exact Inference on Hierarchical Clustering in Particle Physics and Cancer Genomics`](https://ml4physicalsciences.github.io/2020/files/NeurIPS_ML4PS_2020_70.pdf).
-
 
 ## Data Structure
 
@@ -45,11 +41,11 @@ To implement a new model for hierarchical clustering, each hierarchy should have
 
 ### Implementation
 
-Use [`ClusterTrellis.ipynb`](src/ClusterTrellis.ipynb) as a template to run the algorithm. 
+Use [`ClusterTrellis.ipynb`](examples/ClusterTrellis.ipynb) as a template to run the algorithm. 
 
-1- To run the Cluster Trellis on a new model, define the `get_energy_of_split` and `compute_map_features` methods in the `ModelNode` class under the `Interfacing your Own Model` section. In particular,  get_energy_of_split represents the potential function $\psi$ introduced in the paper, describing the compatibility of a pair of sibling nodes in a hierarchy $H$. The energy function $\psi$ for a pairwise splitting should be written in terms of the map_features and model_params. Thus, compute_map_features is an auxiliary function to calculate features of internal vertices in the trellis. 
+1- To run the Cluster Trellis on a new model, define the `get_energy_of_split` and `compute_map_features` methods in the `ModelNode` class under the **Interfacing your Own Model** section. In particular,  get_energy_of_split represents the potential function $\psi$ introduced in the [`paper`](https://arxiv.org/abs/2002.11661), describing the compatibility of a pair of sibling nodes in a hierarchy H. The energy function $\psi$ for a pairwise splitting should be written in terms of map_features and model_params. Thus, compute_map_features is an auxiliary function to calculate features of internal vertices in the trellis. 
 
-**map_features** : list, where each entry is a list with the model features/values for each vertex of a dataset. In particular, we initialize the algorithm with the leaves_features list as [feature1, feature2, ... , featureN]. E.g. for Ginkgo this is [momentum, invariant mass] for each leaf.
+**map_features** : list of the model features/values for each vertex of a dataset, i.e.  [feature1, feature2, ... , featureN]. In particular, we initialize the algorithm with the leaves_features as a list with the features of each leaf. E.g. for Ginkgo this is [momentum, invariant mass] for each leaf.
 
 **model_params** : dictionary with the model parameters.
 
@@ -80,6 +76,9 @@ This model can be run as an example in [`ClusterTrellis.ipynb`](src/ClusterTrell
 
 </pre>
 
+## Publications
+
+A more detailed description of this work and implementations to other areas such as genomics can be found in our papers [`Data Structures & Algorithms for Exact Inference in Hierarchical Clustering`](https://arxiv.org/abs/2002.11661) and [`Exact Inference on Hierarchical Clustering in Particle Physics and Cancer Genomics`](https://ml4physicalsciences.github.io/2020/files/NeurIPS_ML4PS_2020_70.pdf).
 
 -------------------------------------------------------------------------
 ## Citations
