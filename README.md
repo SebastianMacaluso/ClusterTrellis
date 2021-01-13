@@ -8,9 +8,8 @@ Note that this is an early development version.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Ecole provide a collection of computationally efficient, ready to use, learning environments that are also easy to extend to define novel objectives.
 
-**ClusterTrellis** is a toolkit with computationally efficient and ready to use algorithms for finding exact solutions for the MAP hierarchy and partition function (marginal over all possible hierarchies) for any user defined model of hierarchical clustering that fits in the class we consider. In particular, the model should be written in terms of an energy function that factorizes as a product of pairwise splitting energies of each inner vertex in the hierarchy, e.g. the likelihood of a parent vertex splitting into two children. Also, the model parameters should be the same for every vertex and we currently consider only binary trees. If the model satisfies these requirements, then the user only needs to implement this function (and an auxiliary function to calculate features of inner vertices in each model) and **ClusterTrellis** provides the algorithms.
+**ClusterTrellis** is a toolkit with ready to use and computationally efficient algorithms for finding exact solutions for the MAP hierarchy and partition function (marginal over all possible hierarchies) for any user defined model of hierarchical clustering that fits in the class we consider. In particular, the model should be written in terms of an energy function that factorizes as a product of pairwise splitting energies of each inner vertex in the hierarchy, e.g. the likelihood of a parent vertex splitting into two children. Also, the model parameters should be the same for every vertex and we currently consider only binary trees. If the model satisfies these requirements, then the user only needs to implement this function (and an auxiliary function to calculate features of inner vertices in each model) and **ClusterTrellis** provides the algorithms.
 See our  [paper](https://arxiv.org/abs/2002.11661) for more details about the algorithms, data structures and model requirements. A related library is [Ecole](https://www.ecole.ai/) that aims to expose a number of control problems arising in combinatorial optimization solvers as Markov Decision Processes.
 
 
@@ -49,7 +48,7 @@ To implement a new model for hierarchical clustering, each hierarchy should have
 
 Use [`ClusterTrellis.ipynb`](examples/ClusterTrellis.ipynb) as a template to run the algorithm. 
 
-1- To run the Cluster Trellis on a new model, define the `get_energy_of_split` and `compute_map_features` methods in the `ModelNode` class under the **Interfacing your Own Model** section. In particular,  get_energy_of_split represents the potential function $\psi$ introduced in the [`paper`](https://arxiv.org/abs/2002.11661), describing the compatibility of a pair of sibling nodes in a hierarchy H. The energy function $\psi$ for a pairwise splitting should be written in terms of map_features and model_params. Thus, compute_map_features is an auxiliary function to calculate features of internal vertices in the trellis. 
+1- To run the Cluster Trellis on a new model, define the `get_energy_of_split` and `compute_map_features` methods in the `ModelNode` class under the **Interfacing your Own Model** section. In particular,  get_energy_of_split represents the potential function $\psi$ introduced in the [paper](https://arxiv.org/abs/2002.11661), describing the compatibility of a pair of sibling nodes in a hierarchy H. The energy function $\psi$ for a pairwise splitting should be written in terms of map_features and model_params. Thus, compute_map_features is an auxiliary function to calculate features of internal vertices in the trellis. 
 
 **map_features** : list of the model features/values for each vertex of a dataset, i.e.  [feature1, feature2, ... , featureN]. In particular, we initialize the algorithm with the leaves_features as a list with the features of each leaf. E.g. for Ginkgo this is [momentum, invariant mass] for each leaf.
 
@@ -60,7 +59,7 @@ Use [`ClusterTrellis.ipynb`](examples/ClusterTrellis.ipynb) as a template to run
 
 ## Example: Interfacing on Ginkgo 
 
-Ginkgo is a toy model for jets physics that can be downloaded from [`Ginkgo`](https://github.com/SebastianMacaluso/ToyJetsShower). A detailed description of the model can be found in [`Ginkgo Notes`](https://www.overleaf.com/read/pmmcqhyfsctf). Also, details and examples on how to access the jet binary tree structure in [`binaryTreeStructure.ipynb`](src/binaryTreeStructure.ipynb).
+Ginkgo is a toy model for jets physics that can be downloaded from [Ginkgo](https://github.com/SebastianMacaluso/ToyJetsShower). A detailed description of the model can be found in [Ginkgo Notes](https://www.overleaf.com/read/pmmcqhyfsctf). Also, details and examples on how to access the jet binary tree structure in [`binaryTreeStructure.ipynb`](src/binaryTreeStructure.ipynb).
 
 This model can be run as an example in [`ClusterTrellis.ipynb`](src/ClusterTrellis.ipynb).
 
@@ -84,7 +83,7 @@ This model can be run as an example in [`ClusterTrellis.ipynb`](src/ClusterTrell
 
 ## Publications
 
-A more detailed description of this work and implementations to other areas such as genomics can be found in our papers [`Data Structures & Algorithms for Exact Inference in Hierarchical Clustering`](https://arxiv.org/abs/2002.11661) and [`Exact Inference on Hierarchical Clustering in Particle Physics and Cancer Genomics`](https://ml4physicalsciences.github.io/2020/files/NeurIPS_ML4PS_2020_70.pdf).
+A more detailed description of this work and implementations to other areas such as genomics can be found in our papers [Data Structures & Algorithms for Exact Inference in Hierarchical Clustering](https://arxiv.org/abs/2002.11661) and [Exact Inference on Hierarchical Clustering in Particle Physics and Cancer Genomics](https://ml4physicalsciences.github.io/2020/files/NeurIPS_ML4PS_2020_70.pdf).
 
 -------------------------------------------------------------------------
 ## Citations
