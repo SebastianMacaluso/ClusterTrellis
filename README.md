@@ -8,10 +8,10 @@ Note that this is an early development version.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+Ecole provide a collection of computationally efficient, ready to use, learning environments that are also easy to extend to define novel objectives.
 
-
-**ClusterTrellis** is a toolkit for finding exact solutions for the MAP hierarchy and partition function (marginal over all possible hierarchies) for any user defined model of hierarchical clustering that fits in the class we consider. In particular, the model should be written in terms of an energy function that factorizes as a product of pairwise splitting energies of each inner vertex in the hierarchy, e.g. the likelihood of a parent vertex splitting into two children. Also, the model parameters should be the same for every vertex and we currently consider only binary trees. If the model satisfies these requirements, then the user only needs to implement this function (and an auxiliary function to calculate features of inner vertices in each model) and **ClusterTrellis** provides the algorithms.
-See our  [`paper`](https://arxiv.org/abs/2002.11661) for more details about the algorithms, data structures and model requirements.
+**ClusterTrellis** is a toolkit with computationally efficient and ready to use algorithms for finding exact solutions for the MAP hierarchy and partition function (marginal over all possible hierarchies) for any user defined model of hierarchical clustering that fits in the class we consider. In particular, the model should be written in terms of an energy function that factorizes as a product of pairwise splitting energies of each inner vertex in the hierarchy, e.g. the likelihood of a parent vertex splitting into two children. Also, the model parameters should be the same for every vertex and we currently consider only binary trees. If the model satisfies these requirements, then the user only needs to implement this function (and an auxiliary function to calculate features of inner vertices in each model) and **ClusterTrellis** provides the algorithms.
+See our  [paper](https://arxiv.org/abs/2002.11661) for more details about the algorithms, data structures and model requirements. A related library is [Ecole](https://www.ecole.ai/) that aims to expose a number of control problems arising in combinatorial optimization solvers as Markov Decision Processes.
 
 
 ## Introduction
