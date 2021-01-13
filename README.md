@@ -40,11 +40,11 @@ Hierarchical clustering is a fundamental task often used to discover meaningful 
 
 ## Interfacing your own model
 
-### Requirements
+
 
 To implement a new model for hierarchical clustering, each hierarchy should have an energy function that factorizes as a product of pairwise splitting energies $\psi$ of each inner vertex in the hierarchy (see `definition 2` in [`Data Structures & Algorithms for Exact Inference in Hierarchical Clustering`](https://arxiv.org/abs/2002.11661) for more details). Also, the current implementation assumes that the model parameters are the same for every vertex and only considers binary trees.
 
-### Implementation
+
 
 Use [`ClusterTrellis.ipynb`](examples/ClusterTrellis.ipynb) as a template to run the algorithm. 
 
@@ -54,11 +54,11 @@ To run the Cluster Trellis on a new model, define the `get_energy_of_split` and 
 
 **model_params** (instance attribute): dictionary with the model parameters.
 
-### MAP hierarchy, partition function Z 
+#### MAP hierarchy, partition function Z 
 
 The trellis can be run step by step in section **Run Exact trellis on truth trees step by step** (more for debugging purposes) or it could be called with the `runTrellisOnly` function (recommended). In both cases replace `leaves_features` and `model_params` with your model values.
 
-### Sampling hierarchies
+#### Sampling hierarchies
 
 Follow the instructions and run the **Posterior distribution from sampling** section.
 
