@@ -9,7 +9,7 @@ Note that this is an early development version.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
-**ClusterTrellis** is a toolkit with ready to use and computationally efficient algorithms for finding exact solutions for the MAP hierarchy and partition function (marginal over all possible hierarchies) for any user defined model of hierarchical clustering that fits in the class we consider. In particular, the model should be written in terms of an energy function that factorizes as a product of pairwise splitting energies of each inner vertex in the hierarchy, e.g. the likelihood of a parent vertex splitting into two children. Also, the model parameters should be the same for every vertex and we currently consider only binary trees. If the model satisfies these requirements, then the user only needs to implement this function (and an auxiliary function to calculate features of inner vertices in each model) and **ClusterTrellis** provides the algorithms.
+**ClusterTrellis** is a toolkit with ready to use and computationally efficient algorithms for finding exact solutions for the MAP hierarchy and partition function (marginal over all possible hierarchies) for any user defined model of hierarchical clustering that fits in the class we consider. In particular, the model should be written in terms of an energy function that factorizes as a product of pairwise splitting energies of each inner vertex in the hierarchy, e.g. the likelihood of a parent vertex splitting into two children. Also, the model parameters should be the same for every vertex and we currently consider only binary trees. If the model satisfies these requirements, then the user only needs to implement the pairwise splitting function (and an auxiliary function to calculate features of inner vertices in each model) and **ClusterTrellis** provides the algorithms.
 See our  [paper](https://arxiv.org/abs/2002.11661) for more details about the algorithms, data structures and model requirements. A related library is [Ecole](https://www.ecole.ai/) that aims to expose a number of control problems arising in combinatorial optimization solvers as Markov Decision Processes.
 
 
@@ -59,13 +59,13 @@ Use [`ClusterTrellis.ipynb`](examples/ClusterTrellis.ipynb) as a template to run
 
 ## Example: Interfacing on Ginkgo 
 
-Ginkgo is a toy model for jets physics that can be downloaded from [Ginkgo](https://github.com/SebastianMacaluso/ToyJetsShower). A detailed description of the model can be found in [Ginkgo Notes](https://www.overleaf.com/read/pmmcqhyfsctf). Also, details and examples on how to access the jet binary tree structure in [`binaryTreeStructure.ipynb`](src/binaryTreeStructure.ipynb).
+[Ginkgo](https://github.com/SebastianMacaluso/ToyJetsShower) is a toy model for jets physics. A detailed description of the model can be found in [Ginkgo Notes](https://www.overleaf.com/read/pmmcqhyfsctf). Also, details and examples on how to access the jet binary tree structure in [`binaryTreeStructure.ipynb`](examples/binaryTreeStructure.ipynb).
 
-This model can be run as an example in [`ClusterTrellis.ipynb`](src/ClusterTrellis.ipynb).
+This model can be run as an example in [`ClusterTrellis.ipynb`](examples/ClusterTrellis.ipynb).
 
 ### Partition function and maximum likelihood (MAP) hierarchy.
 
- The trellis implements a memoized dynamic program to compute the partition function and the MAP hierarchy. There are examples on how to run the algorithm and plot the results in [`ClusterTrellis.ipynb`](src/ClusterTrellis.ipynb).
+ The trellis implements a memoized dynamic program to compute the partition function and the MAP hierarchy. There are examples on how to run the algorithm and plot the results in [`ClusterTrellis.ipynb`](examples/ClusterTrellis.ipynb).
 
 
 
