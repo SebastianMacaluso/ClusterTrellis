@@ -54,11 +54,11 @@ To run the Cluster Trellis on a new model, define the `get_energy_of_split` and 
 
 **model_params** (instance attribute): dictionary with the model parameters.
 
-### MAP hierarchy, partition function Z 
+### MAP hierarchy and partition function Z 
 
 The trellis can be run step by step in section **Run Exact trellis on truth trees step by step** (more for debugging purposes) or it could be called with the `runTrellisOnly` function (recommended). In both cases replace `leaves_features` and `model_params` with your model values.
 
-### Sampling hierarchies
+### Sampling hierarchies from the exact true posterior
 
 Follow the instructions and run the **Posterior distribution from sampling** section.
 
