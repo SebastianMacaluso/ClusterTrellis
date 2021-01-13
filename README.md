@@ -10,9 +10,13 @@ Note that this is an early development version.
 
 
 
-**ClusterTrellis** is a toolkit for finding exact solutions for the MAP hierarchy and partition function (marginal over all possible hierarchies) for any user defined model of hierarchical clustering that fits in the class we consider. In particular, the model should be written in terms of an energy function that factorizes as a product of pairwise splitting energies $`\psi`$ of each inner vertex in the hierarchy, e.g. the likelihood of a parent vertex splitting into two children. If the model satisfies these requirements, then the user only needs to implement this function (and an auxiliary function to calculate features of inner vertices in each model) and **ClusterTrellis** provides the algorithms.
+**ClusterTrellis** is a toolkit for finding exact solutions for the MAP hierarchy and partition function (marginal over all possible hierarchies) for any user defined model of hierarchical clustering that fits in the class we consider. In particular, the model should be written in terms of an energy function that factorizes as a product of pairwise splitting energies 
+$$`\psi`$$ of each inner vertex in the hierarchy, e.g. the likelihood of a parent vertex splitting into two children. If the model satisfies these requirements, then the user only needs to implement this function (and an auxiliary function to calculate features of inner vertices in each model) and **ClusterTrellis** provides the algorithms.
 See our  [`paper`](https://arxiv.org/abs/2002.11661) for more details about the algorithms, data structures and model requirements.
 
+```math
+SE = \frac{\sigma}{\sqrt{n}}
+```
 
 ## Introduction
 
