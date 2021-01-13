@@ -42,7 +42,7 @@ Hierarchical clustering is a fundamental task often used to discover meaningful 
 
 ### Requirements
 
-To implement a new model for hierarchical clustering, each hierarchy should have an energy function that factorizes as a product of pairwise splitting energies $\psi$ of each inner vertex in the hierarchy (see `definition 2` in [`Data Structures & Algorithms for Exact Inference in Hierarchical Clustering`](https://arxiv.org/abs/2002.11661) for more details). Also, the current implementation assumes that the model parameters are the same for every vertex.
+To implement a new model for hierarchical clustering, each hierarchy should have an energy function that factorizes as a product of pairwise splitting energies $\psi$ of each inner vertex in the hierarchy (see `definition 2` in [`Data Structures & Algorithms for Exact Inference in Hierarchical Clustering`](https://arxiv.org/abs/2002.11661) for more details). Also, the current implementation assumes that the model parameters are the same for every vertex and only considers binary trees.
 
 ### Implementation
 
@@ -50,9 +50,9 @@ Use [`ClusterTrellis.ipynb`](examples/ClusterTrellis.ipynb) as a template to run
 
 1- To run the Cluster Trellis on a new model, define the `get_energy_of_split` and `compute_map_features` methods in the `ModelNode` class under the **Interfacing your Own Model** section. In particular,  get_energy_of_split represents the potential function $\psi$ introduced in the [paper](https://arxiv.org/abs/2002.11661), describing the compatibility of a pair of sibling nodes in a hierarchy H. The energy function $\psi$ for a pairwise splitting should be written in terms of map_features and model_params. Thus, compute_map_features is an auxiliary function to calculate features of internal vertices in the trellis. 
 
-**map_features** : list of the model features/values for each vertex of a dataset, i.e.  [feature1, feature2, ... , featureN]. In particular, we initialize the algorithm with the leaves_features as a list with the features of each leaf. E.g. for Ginkgo this is [momentum, invariant mass] for each leaf.
+**map_features** (instance attribute): list of the model features/values for each vertex of a dataset, i.e.  [feature1, feature2, ... , featureN]. In particular, we initialize the algorithm with the leaves_features as a list with the features of each leaf. E.g. for Ginkgo this is [momentum, invariant mass] for each leaf.
 
-**model_params** : dictionary with the model parameters.
+**model_params** (instance attribute): dictionary with the model parameters.
 
 2- The trellis can be run step by step in section `Run Exact trellis on truth trees step by step` (more for debugging purposes) or it could be called with the `runTrellisOnly` function (recommended). In both cases replace `leaves_features` and `model_params` with your model values.
 
