@@ -114,10 +114,18 @@ If you use this package, please cite our paper
 
 ## Acknowledgements 
 
-[![NSF-1836650](https://img.shields.io/badge/NSF-1836650-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1836650)
+[![NSF- OAC-1836650](https://img.shields.io/badge/NSF-1836650-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1836650)
 
-This work was supported by the U.S. National Science Foundation (NSF) cooperative agreement [OAC-1836650 (IRIS-HEP)](https://nsf.gov/awardsearch/showAward?AWD_ID=1836650).
+[![NSF-ACI--1450310](https://img.shields.io/badge/NSF-ACI--1450310-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1450310)
 
+[![NSF-1763618](https://img.shields.io/badge/NSF-1763618-blue)] 
+
+This work was supported by the U.S. National Science Foundation (NSF) cooperative agreements [OAC-1836650 (IRIS-HEP)](https://nsf.gov/awardsearch/showAward?AWD_ID=1836650), [ACI-1450310](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1450310) and [NSF-1763618](https://nsf.gov/awardsearch/showAward?AWD_ID=1763618&HistoricalAwards=false).
+
+<pre>
+
+
+</pre>
 
 <img src="https://github.com/SebastianMacaluso/ToyJetsShower/blob/master/notes/plots/IRIS-HEP.png" width="180" align="left"> <img src="https://github.com/SebastianMacaluso/ToyJetsShower/blob/master/notes/plots/NYU.png" width="140" align="center"> 
 <img src="https://github.com/SebastianMacaluso/HierarchicalTrellis-Ginkgo/blob/master/plots/IESL_logo.png" width="90" align="center">                   <img src="https://github.com/SebastianMacaluso/HierarchicalTrellis-Ginkgo/blob/master/plots/UMASS_logo.png" width="90" align="center">
