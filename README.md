@@ -34,7 +34,7 @@ Hierarchical clustering is a fundamental task often used to discover meaningful 
 
 a) From TestPyPI:
 
-`pip install -i https://test.pypi.org/simple/ ClusterTrellis==0.0.1`
+`pip install -i https://test.pypi.org/simple/ ClusterTrellis==0.0.2`
 
 b) From github repository
 
