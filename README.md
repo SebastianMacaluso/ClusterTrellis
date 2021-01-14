@@ -112,6 +112,11 @@ If you use this package, please cite our paper
 }
 ```
 
+## Acknowledgements 
+
+[![NSF: 1836650](https://nsf.gov/awardsearch/showAward?AWD_ID=1836650)
+
+This work was supported by the U.S. National Science Foundation (NSF) cooperative agreement [OAC-1836650 (IRIS-HEP)](https://nsf.gov/awardsearch/showAward?AWD_ID=1836650).
 
 
 <img src="https://github.com/SebastianMacaluso/ToyJetsShower/blob/master/notes/plots/IRIS-HEP.png" width="180" align="left"> <img src="https://github.com/SebastianMacaluso/ToyJetsShower/blob/master/notes/plots/NYU.png" width="140" align="center"> 
