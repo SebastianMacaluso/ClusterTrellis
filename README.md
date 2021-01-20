@@ -23,7 +23,6 @@ Hierarchical clustering is a fundamental task often used to discover meaningful 
 ##### Fig. 1: Schematic representation of a hierarchical clustering. H denotes the latent state and X the dataset.
 
 
-
 ## Data Structure
 
 <!--This should be  a jpg file for the figure to be displayed-->
