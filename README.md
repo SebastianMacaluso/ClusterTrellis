@@ -40,7 +40,7 @@ a) From TestPyPI:
 b) From github repository
 
 1. Clone the repository
-2. `pip install -e .` from main dir.
+2. From root dir: `pip install -e .` 
 
 
 
