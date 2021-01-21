@@ -3,13 +3,14 @@ import setuptools
 
 setuptools.setup(
     name="ClusterTrellis",
-    version="0.0.1",
+    version="0.0.2",
     description="Hierarchical Cluster Trellis",
     url="https://github.com/SebastianMacaluso/ClusterTrellis",
     author="",
     author_email="sm4511@nyu.edu",
     license="MIT",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(where="src"),
+    package_dir={"": "src"},
     zip_safe=False,
     classifiers=[
         "Programming Language :: Python :: 3",
