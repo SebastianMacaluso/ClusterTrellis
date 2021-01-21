@@ -1,7 +1,7 @@
 
 import logging
-from trellis_node import TrellisNode
-from utils import get_logger
+from .trellis_node import TrellisNode
+from .utils import get_logger
 logger = get_logger(level=logging.WARNING)
 
 

@@ -3,7 +3,7 @@ import numpy as np
 import logging
 from scipy.special import logsumexp, softmax
 
-from utils import get_logger
+from .utils import get_logger
 logger = get_logger(level=logging.WARNING)
 
 

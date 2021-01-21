@@ -1,8 +1,8 @@
 import time
 import numpy as np
-from src import HierarchicalTrellis
+from . import HierarchicalTrellis
 import logging
-from utils import get_logger
+from .utils import get_logger
 logger = get_logger(level=logging.WARNING)
 
 
