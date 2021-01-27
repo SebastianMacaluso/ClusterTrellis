@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="ClusterTrellis",
-    version="0.0.2",
+    version="0.0.3",
     description="Hierarchical Cluster Trellis",
     url="https://github.com/SebastianMacaluso/ClusterTrellis",
     author="",
