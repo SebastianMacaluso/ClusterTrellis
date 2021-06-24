@@ -9,3 +9,4 @@ from . import model_node
 from . import run_experiments
 from . import trellis_node
 from . import utils
+from . import topologies
