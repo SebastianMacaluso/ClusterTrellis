@@ -6,13 +6,13 @@ import os
 import logging
 import numpy as np
 import time
-import wandb
-import sys
-
-
-from absl import flags
-from absl import logging
-from absl import app
+# import wandb
+# import sys
+#
+#
+# from absl import flags
+# from absl import logging
+# from absl import app
 
 from ginkgo import likelihood_invM as likelihood
 from scipy.special import logsumexp
@@ -197,7 +197,8 @@ class build_trees_topologies(object):
 
 
 
-
+    def invariant_permutations(self):
+        pass
 
 
 
@@ -263,6 +264,59 @@ class build_jetTrees(build_trees_topologies):
         else:
             return self.elems2node[elements]
 
+
+
+    def invariant_permutations(self,tree,tree_with_all_permutations, i=0):
+
+
+        # for tree in trees:
+        # tree_with_all_permutations = [tree]
+        temp = tree[0:i] + [(tree[i][1], tree[i][0])] + tree[i + 1::]
+        if temp not in tree_with_all_permutations:
+            tree_with_all_permutations.append(temp)
+        for k,siblings in enumerate(temp):
+            # if k>i:
+            temp2=temp[0:k]+[(siblings[1], siblings[0])]+temp[k+1::]
+            if temp2 not in tree_with_all_permutations:
+                tree_with_all_permutations.append(temp[0:k]+[(siblings[1], siblings[0])]+temp[k+1::])
+            # tree_logLH.append(self.get_energy_of_split(siblings[0], siblings[1]))
+
+        if i<len(tree)-1:
+            i += 1
+            self.invariant_permutations(tree, tree_with_all_permutations, i)
+
+
+    # def invariant_permutations(self,tree,tree_with_all_permutations, i=0):
+    #
+    #
+    #     # for tree in trees:
+    #     # tree_with_all_permutations = [tree]
+    #     temp = tree[0:i] + [(tree[i][1], tree[i][0])] + tree[i + 1::]
+    #     tree_with_all_permutations.append(temp)
+    #     for k,siblings in enumerate(temp):
+    #         tree_with_all_permutations.append(tree[0:k]+[(siblings[1], siblings[0])]+tree[k+1::])
+    #             # tree_logLH.append(self.get_energy_of_split(siblings[0], siblings[1]))
+    #
+    #     if i<len(tree)-1:
+    #         i += 1
+    #         self.invariant_permutations(tree, tree_with_all_permutations, i)
+
+        # for i,siblings in enumerate(tree):
+        #     tree_with_all_permutations.append(tree[0:i]+[(siblings[1], siblings[0])]+tree[i+1::])
+        #         # tree_logLH.append(self.get_energy_of_split(siblings[0], siblings[1]))
+        #     # total_logLH.append(sum(tree_logLH))
+        # return tree_with_all_permutations
+
+    # def invariant_permutations(self,tree):
+    #
+    #     # for tree in trees:
+    #     tree_with_all_permutations = [tree]
+    #     for i,siblings in enumerate(tree):
+    #         tree_with_all_permutations.append(tree[0:i]+[(siblings[1], siblings[0])]+tree[i+1::])
+    #             # tree_logLH.append(self.get_energy_of_split(siblings[0], siblings[1]))
+    #         # total_logLH.append(sum(tree_logLH))
+    #     return tree_with_all_permutations
+
     def tree_log_likelihood(self, trees):
         total_logLH = []
         for tree in trees:
@@ -307,3 +361,5 @@ class build_jetTrees(build_trees_topologies):
         logging.debug(f"split likelihood ={split_llh}")
 
         return split_llh
+
+
