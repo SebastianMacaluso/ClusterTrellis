@@ -3,6 +3,9 @@ import itertools
 import string
 import numpy as np
 import logging
+import torch
+
+from scipy.stats import multivariate_normal
 from .utils import get_logger
 logger = get_logger(level=logging.WARNING)
 
@@ -14,6 +17,7 @@ class HierarchicalTrellis:
         self.root = None
         self.elements = None
         self.elements_2_node = {}
+        self.model_params = None
 
     def leaves(self):
         return [self.elements_2_node[frozenset(element)] for element in self.elements]
@@ -56,6 +60,7 @@ class HierarchicalTrellis:
                            alphabet = string.ascii_lowercase):
         """ Create trellis nodes starting from leaves, and assign children and parents"""
 
+        self.model_params = model_params
         self.elements= frozenset(alphabet[:len(map_values)])
         """Create leaf nodes and assign values. e.g. momentum and delta"""
         for letter, leaf in zip(self.elements, map_values):
@@ -126,6 +131,34 @@ class HierarchicalTrellis:
                 """ Compute map tree where the current node is the root"""
                 node.compute_map_tree_split(self)
 
+        """Parent 3-momentum vector pdf: (2 pi)^(-3/2) det(SIGMA)^(-1/2) exp[-1/2(x-mu)^T SIGMA^-1 (x-mu)]"""
+        mean_mass = self.model_params["mean_mass"]
+        sigma = self.model_params["sigma"]
+        mean_p_xyz = self.model_params["mean_p_xyz"]
+        covariance_vec = self.model_params["covariance_vec"]
+
+        # print("self.leaves = ",self.model_params["leaves"])
+        root_4_vec = np.sum(self.model_params["leaves"], axis=0)
+        root_mass = np.sqrt(root_4_vec[0] ** 2 - np.linalg.norm(root_4_vec[1::]) ** 2)
+
+        multiv_mass_dist = multivariate_normal(mean=mean_mass[0].numpy(), cov=sigma[0].numpy())
+        mass_sampled_prob = multiv_mass_dist.pdf(root_mass)
+
+        multiv_momentum_dist = multivariate_normal(mean_p_xyz, torch.diag(covariance_vec).numpy())
+        momentum_sampled_prob = multiv_momentum_dist.pdf(root_4_vec[1::])
+        root_log_prob = np.log(mass_sampled_prob)+np.log(momentum_sampled_prob)
+        # print("----------  Root distributions ----------------")
+        # print("root_4_vec = ",root_4_vec)
+        # print("mean_mass = ", mean_mass)
+        # print("sigma = ",sigma)
+        # print("mean_p_xyz = ", mean_p_xyz)
+        # print("covariance_vec = ",covariance_vec)
+        # print("root_mass = ",root_mass)
+        # print("mass_sampled_prob = ",mass_sampled_prob)
+        # print("momentum_sampled_prob = ", momentum_sampled_prob)
+        # print("======="*10)
+
+
         logger.info(f"====="*10)
         logger.debug(f"Assigned MAP values for {self, self.root.map_tree_energy, self.root.map_children, self.root.map_features}")
         logger.info(f"---------"*10)
@@ -134,7 +167,16 @@ class HierarchicalTrellis:
         logger.info(f"Tot trees # =  {self.root.N_trees}")
 
 
-        return self.map_tree_energy, self.root.logZ, self.root.N_trees
+
+        # print("map_tree_energy = ", self.map_tree_energy)
+        # print("self.root.logZ = ", self.root.logZ)
+        # print("root_log_prob = ",root_log_prob)
+        self.root.logZ+= root_log_prob
+
+        # print("map_tree_energy after = ", self.map_tree_energy +root_log_prob)
+        # print("self.root.logZ after = ", self.root.logZ)
+
+        return self.map_tree_energy+root_log_prob, self.root.logZ, self.root.N_trees
 
 
 
